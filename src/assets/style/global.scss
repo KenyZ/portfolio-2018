@@ -1,0 +1,112 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+body{
+
+    font-family: $fontText;
+    font-weight: 500;
+    color: $textColor;
+    background-color: $backgroundColor;
+    user-select: none;
+
+    // @include screen-sm(){
+    //     outline: 10px solid red;
+    // }
+
+    // @include screen-md(){
+    //     outline: 10px solid green;
+    // }
+
+    // @include screen-lg(){
+    //     outline: 10px solid blue;
+    // }
+
+    // @include screen-xl(){
+    //     outline: 10px solid yellow;
+    // }
+    
+    &:before{
+        content: '';
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background-color: $dark;
+        transition: width $tEase .5s 1s;
+    }
+    
+    &.in-workSingle:before{
+        width: 100%;
+        transition: width $tEase .5s 1s;
+    }
+   
+}
+
+.single-body{
+    max-width: 1000px;
+    padding: 0 25px;
+    margin: 0 auto;
+}
+
+.canvas3d-wrapper{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    @keyframes grain {
+        0%, 100% { transform:translate(0, 0) }
+        10% { transform:translate(-5%, -10%) }
+        20% { transform:translate(-15%, 5%) }
+        30% { transform:translate(7%, -25%) }
+        40% { transform:translate(-5%, 25%) }
+        50% { transform:translate(-15%, 10%) }
+        60% { transform:translate(15%, 0%) }
+        70% { transform:translate(0%, 15%) }
+        80% { transform:translate(3%, 35%) }
+        90% { transform:translate(-10%, 10%) }
+      }
+
+    &:after{
+        content: '';
+        width: 300%;
+        height: 300%;
+        position: fixed;
+        left: -50%;
+        top: -100%;
+        background-image: url(../img/grain.jpg);
+        opacity: .5;
+        animation: grain 8s steps(10) infinite;
+    }
+}
+
+// SCROLLBAR 
+
+.ps__rail-y{
+    z-index: 999;
+    right: 0;
+}
+
+.ps__rail-x{
+    z-index: 999;
+}
+
+.ps__thumb-x, .ps__thumb-y{
+    border-radius: 0
+}
+
+.ps.ps-on-mobile{
+    overflow: auto!important;
+    height: 100%!important;
+
+    .ps__rail-y{
+        display: none;
+    }
+
+    .ps__rail-x{
+        display: none;
+    }
+}

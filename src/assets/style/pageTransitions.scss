@@ -1,0 +1,116 @@
+.page{
+    // height: 100vh;
+    // padding: calc(15% + 1.5em) 5% 5%;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    // transition: transform 1s ease-in-out;
+}   
+
+.anim-fade{
+    // border: 1px solid red;
+    overflow: hidden;
+}
+
+.anim-fade-inner{
+    // border: 2px solid blue;
+}
+
+.page-enter{
+    // opacity: 0;
+
+    .anim-fade-inner{
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+
+    &.anim-home-fade{
+        opacity: 0;
+    }
+}
+
+.page-enter-active{
+    // opacity: 1;
+    // transition: opacity .5s 1s; 
+    
+    
+    @keyframes onEnterWorkSingle{
+        from{
+            transform: translate(0, 100%);
+            opacity: 0
+        }
+        to{
+            transform: translate(0, 0);
+            opacity: 1
+        }
+    }
+
+    @keyframes onEnterHome{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+
+    &.anim-home-fade{
+        animation: onEnterHome 1s $tEase forwards;
+        animation-delay: 1.5s;
+    }
+
+    .anim-fade-inner{
+        animation: onEnterWorkSingle 1s $tEase forwards;
+        animation-delay: 1.5s;
+    }
+}
+
+.page-exit{
+    // opacity: 1;
+
+    .anim-fade-inner{
+        transform: translate(0, 0);
+        opacity: 1;
+
+        &.anim-fade-fix1{
+            transform: translate(0, -50%);
+        }
+    }
+
+    .anim-home-fade{
+        opacity: 1
+    }
+}
+
+.page-exit-active{
+    // opacity: 0;
+    // transition: opacity .5s;   
+
+    .anim-fade-inner{
+        transform: translate(0, 100%);
+        opacity: 0;
+        transition-property: transform, opacity;
+        transition-duration: 1s;
+        transition-timing-function: $tEase;
+    }
+
+    .anim-home-item{
+        transform: translate(-100%, 0);
+        transition: transform $tEase 1s;
+
+        // @for $i from 1 through 10{
+        //     &:nth-child(#{$i}){
+        //         transition-delay: $i * 150ms
+        //     }
+        // }
+    }
+
+    &.anim-home-fade{
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: 1s;
+        transition-timing-function: $tEase;
+    }
+}

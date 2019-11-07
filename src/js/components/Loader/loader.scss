@@ -1,0 +1,122 @@
+@import '../../../assets/style/variables.scss';
+
+.loader{
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: visibility 1.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .welcome{
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        color: $dark;
+        font-weight: 600;
+        height: 30px;
+        overflow: hidden;
+        margin-bottom: 25vh;
+        transition: opacity $tEase $tDuration2;
+
+        @keyframes line1{
+            to {
+                transform: translateY(-30px)
+            }
+        }
+
+        @keyframes line2{
+            from { transform: translateY(-30px) }
+            to {
+                transform: translateY(-60px)
+            }
+        }
+
+        @keyframes line3{
+            from { transform: translateY(-60px) }
+            to {
+                transform: translateY(-90px)
+            }
+        }
+
+        .lines{
+            position: relative;
+            top: 0;
+            animation: line1 $tEase .5s 1s forwards,
+                line2 $tEase .5s 2.5s forwards,
+                line3 $tEase .5s 4s forwards;
+
+        }
+
+        p{
+            line-height: 30px;
+            height: 30px;
+        }
+    }
+
+    &.ready{
+        visibility: hidden;
+
+        .progress{
+            opacity: 0;
+        }
+
+        .welcome{
+            opacity: 0
+        }
+
+        &:before, &:after{
+            height: 0;
+        }
+    }
+
+    .progress{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        width: 100%;
+        height: 3px;
+        transition: opacity $tEase $tDuration2;
+
+        &-inner{
+            width: 0;
+            height: 100%;
+            background-color: #262626;
+            position: relative;
+
+            small{
+                position: absolute;
+                bottom: 100%;
+                right: 0;
+                color: #262626;
+                font-weight: 600;
+                padding-right: 5px;
+            }
+        }
+    }
+
+    &:before, &:after{
+        content: '';
+        width: 100%;
+        height: 50%;
+        background-color: $backgroundColor;
+        transition: height $tEase $tDuration3 500ms;
+        position: absolute;
+        left: 0;
+    }
+
+    &:before{
+        top: 0
+    }
+
+    &:after{
+        bottom: 0
+    }
+    
+}

@@ -1,0 +1,64 @@
+@function em($pixels, $context: 16) {
+    @return #{$pixels/$context}em;
+}
+
+
+// DEVICE
+
+@mixin mobile(){
+    @media (max-width: 1140px){
+        @content;
+    }
+}
+
+@mixin desktop(){
+    @media (min-width: 1140px){
+        @content;
+    }
+}
+
+// ORIENTATION
+
+@mixin landscape(){
+    @media (orientation: landscape){
+        @content;
+    }
+}
+
+@mixin portrait(){
+    @media (orientation: portrait){
+        @content;
+    }
+}
+
+// RESPONSIVE
+
+@mixin screen-sm(){
+    @media (min-width: 576px){
+        @content;
+    }
+}
+
+@mixin screen-md(){
+    @media (min-width: 768px){
+        @content;
+    }
+}
+
+@mixin screen-lg(){
+    @media (min-width: 992px){
+        @content;
+    }
+}
+
+@mixin screen-xl(){
+    @media (min-width: 1200px){
+        @content;
+    }
+}
+
+@mixin screen-xxl(){
+    @media (min-width: 1400px){
+        @content;
+    }
+}

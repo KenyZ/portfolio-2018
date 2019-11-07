@@ -1,0 +1,21 @@
+
+@import 'src/assets/style/mixins.scss';
+
+.ps__rail-y{
+    background: none!important;
+    cursor: pointer;
+    display: none;
+
+    @include screen-lg{
+        display: block;
+    }
+}
+.ps__thumb-y{
+    width: 6px!important
+}
+
+.hide-scroll{
+    .ps__rail-y, .ps__rail-x{
+        display: none
+    }
+}
